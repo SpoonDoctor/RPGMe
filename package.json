@@ -1,0 +1,24 @@
+{
+  "name": "rpgm",
+  "version": "1.0.0",
+  "description": "A GroupMe bot designed to run a text based roleplaying game that can be played either solo or as a party with other members of the chatroom.",
+  "main": "app.js",
+  "scripts": {
+    "test": "test",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "rpg",
+    "groupme",
+    "bot"
+  ],
+  "author": "Christian Davidson",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "ip": "^1.1.5",
+    "x": "^0.1.2",
+    "xmlhttprequest": "^1.8.0"
+  }
+}
