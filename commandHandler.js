@@ -42,6 +42,13 @@ class CommandHandler {
                 "text": ""
             };
 
+            //debug commands
+            if (regextCommands.printActiveCommand.test(receivedCommand)) {
+                console.log("Command AS: ", activeSave, "\nsaveHandler AS: ", saveHandler.activeSave);
+            }
+
+
+
             if (regexCommands.loadCommand.test(receivedCommand)) {
                 saveHandler.loadSave(request.body.user_id);
                 activeSave = saveHandler.activeSave;
