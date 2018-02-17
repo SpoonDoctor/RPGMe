@@ -45,6 +45,8 @@ class CommandHandler {
             //debug commands
             if (regexCommands.printActiveCommand.test(receivedCommand)) {
                 console.log("Command AS: ", activeSave, "\nsaveHandler AS: ", saveHandler.activeSave);
+                groupmeMessageContent.text = "Debug active saves";
+                resolve(groupmeMessageContent);
             }
 
 
@@ -52,6 +54,8 @@ class CommandHandler {
             if (regexCommands.loadCommand.test(receivedCommand)) {
                 saveHandler.loadSave(request.body.user_id);
                 activeSave = saveHandler.activeSave;
+                groupmeMessageContent.text = "loaded";
+                resolve(groupmeMessageContent);
 
             } else if (creatingHero) {
                 console.log("creating hero?");

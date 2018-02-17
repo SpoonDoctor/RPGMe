@@ -1,7 +1,7 @@
 "use strict";
 const fs = require("fs");
-let activeSave = null;
-let saveID = null;
+var activeSave = null;
+var saveID = null;
 
 /*Class for handling saved data/saving data*/
 class SaveHandler {
