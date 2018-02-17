@@ -43,7 +43,7 @@ class CommandHandler {
             };
 
             //debug commands
-            if (regextCommands.printActiveCommand.test(receivedCommand)) {
+            if (regexCommands.printActiveCommand.test(receivedCommand)) {
                 console.log("Command AS: ", activeSave, "\nsaveHandler AS: ", saveHandler.activeSave);
             }
 
