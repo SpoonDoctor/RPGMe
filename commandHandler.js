@@ -44,7 +44,7 @@ class CommandHandler {
 
             //debug commands
             if (regexCommands.printActiveCommand.test(receivedCommand)) {
-                console.log("Command AS: ", activeSave, "\nsaveHandler AS: ", saveHandler.activeSave);
+                console.log("Command AS: ", activeSave, "\nsaveHandler AS: ", saveHandler.getActiveSave());
                 groupmeMessageContent.text = "Debug active saves";
                 resolve(groupmeMessageContent);
             }
@@ -53,7 +53,7 @@ class CommandHandler {
 
             if (regexCommands.loadCommand.test(receivedCommand)) {
                 saveHandler.loadSave(request.body.user_id);
-                activeSave = saveHandler.activeSave;
+                activeSave = saveHandler.getActiveSave();
                 groupmeMessageContent.text = "loaded";
                 resolve(groupmeMessageContent);
 
@@ -77,7 +77,7 @@ class CommandHandler {
                     saveHandler.setSaveID(request.body.sender_id);
                     console.log(request.body.sender_id);
                     saveHandler.createSave(request.body.sender_id);
-                    activeSave = saveHandler.activeSave;
+                    activeSave = saveHandler.getActiveSave();
                 }
                 /*Game state isn't 0? This command is no longer useful. Let the user know*/
                 if (saveHandler.getGameState() !== gameStateList.notBegun) {

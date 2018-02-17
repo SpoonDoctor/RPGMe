@@ -58,6 +58,10 @@ class SaveHandler {
     updateSave(param, value) {
         return;
     }
+
+    getActiveSave() {
+        return activeSave;
+    }
 }
 
 module.exports = new SaveHandler();
