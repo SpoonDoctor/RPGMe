@@ -35,7 +35,7 @@ class CommandHandler {
 
     performCommand(request) {
         if (activeSave === null) {
-            saveHandler.loadOrCreateSave(request.body.text.user_id);
+            saveHandler.loadOrCreateSave(request.body.user_id);
             activeSave = saveHandler.activeSave;
         }
         let receivedCommand = request.body.text;
