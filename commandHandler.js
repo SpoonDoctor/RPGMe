@@ -15,6 +15,8 @@ let gameStateList = {
     "doneCreating": "1.2"
 };
 
+var activeSave = null;
+
 let creatingHero = false;
 
 class CommandHandler {
@@ -32,6 +34,10 @@ class CommandHandler {
     }
 
     performCommand(request) {
+        if (activeSave === null) {
+            saveHandler.loadOrCreateSave(request.body.text.user_id);
+            activeSave = saveHandler.activeSave;
+        }
         let receivedCommand = request.body.text;
         return new Promise((resolve) => {
             /*Content needed to post to a GroupMe chat. Maybe stick the id in a config instead of hard code?*/
