@@ -53,9 +53,14 @@ class CommandHandler {
 
             if (regexCommands.loadCommand.test(receivedCommand)) {
                 saveHandler.loadSave(request.body.user_id);
-                activeSave = saveHandler.getActiveSave();
-                groupmeMessageContent.text = "loaded";
-                resolve(groupmeMessageContent);
+                // activeSave = saveHandler.getActiveSave();
+                if (saveHandler.getActiveSave() === undefined) {
+                    groupmeMessageContent.text = "Failed to load file. To begin a game, use 'rpgm begin.'";
+                    resolve(groupmeMessageContent);
+                } else {
+                    groupmeMessageContent.text = "loaded";
+                    resolve(groupmeMessageContent);
+                }
 
             } else if (creatingHero) {
                 console.log("creating hero?");
