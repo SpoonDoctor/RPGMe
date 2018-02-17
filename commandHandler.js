@@ -34,10 +34,6 @@ class CommandHandler {
     }
 
     performCommand(request) {
-        if (activeSave === null) {
-            saveHandler.loadOrCreateSave(request.body.user_id);
-            activeSave = saveHandler.activeSave;
-        }
         let receivedCommand = request.body.text;
         return new Promise((resolve) => {
             /*Content needed to post to a GroupMe chat. Maybe stick the id in a config instead of hard code?*/
@@ -48,7 +44,7 @@ class CommandHandler {
 
             if (regexCommands.loadCommand.test(receivedCommand)) {
                 saveHandler.loadSave(request.body.user_id);
-                //saveHandler.getGameState();
+                activeSave = saveHandler.activeSave;
 
             } else if (creatingHero) {
                 console.log("creating hero?");
