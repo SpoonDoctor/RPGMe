@@ -24,11 +24,11 @@ class CommandHandler {
         console.log("in creating hero", saveHandler.getGameState());
         if (saveHandler.getGameState() === gameStateList.creatingHeroName) {
             saveHandler.setGameState("1.1");
-            saveHandler.updateSave("name", heroParam);
+            //saveHandler.updateSave("name", heroParam);
             return "Your hero shall be named: " + heroParam + ". What class is " + heroParam + "?";
         } else if (saveHandler.getGameState() === gameStateList.creatingHeroClass) {
             saveHandler.setGameState("1.2");
-            saveHandler.updateSave("class", heroParam);
+            //saveHandler.updateSave("class", heroParam);
             return "I do say, your hero has become a(n): " + heroParam + ".";
         }
     }
@@ -47,6 +47,7 @@ class CommandHandler {
                 console.log("Command AS: ", activeSave, "\nsaveHandler AS: ", saveHandler.getActiveSave());
                 groupmeMessageContent.text = "Debug active saves";
                 resolve(groupmeMessageContent);
+                return;
             }
 
 
@@ -62,6 +63,14 @@ class CommandHandler {
                     resolve(groupmeMessageContent);
                 }
 
+            } else if (regexCommands.saveCommand.test(receivedCommand)) {
+                if (saveHandler.gameSave() === 0) {
+                    groupmeMessageContent.text = "Failed to save. No active save.";
+                    resolve(groupmeMessageContent);
+                } else {
+                    groupmeMessageContent.text = "Saving Game";
+                    resolve(groupmeMessageContent);
+                }
             } else if (creatingHero) {
                 console.log("creating hero?");
                 groupmeMessageContent.text = this.createHero(request.body.text);
