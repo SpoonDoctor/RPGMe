@@ -35,7 +35,7 @@ class SaveHandler {
             }
         }
         console.log(saveMatchingID)
-        if (saveMatchingID === null) {
+        if (saveMatchingID === undefined) {
             var newSaveFile = JSON.parse(fs.readFileSync("./documents/saves/saveTemplate", "utf8"));
             newSaveFile.gameState = "0";
             fs.writeFileSync("./documents/saves/" + saveID + ".save", JSON.stringify(newSaveFile, null, "  "));
