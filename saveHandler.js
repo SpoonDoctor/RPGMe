@@ -29,14 +29,18 @@ class SaveHandler {
             saveMatchingID = JSON.parse(fs.readFileSync("./documents/saves/" + saveID + ".save", "utf8"));
         } catch (err) {
             if (err.code === "ENOENT") {
-                var newSaveFile = JSON.parse(fs.readFileSync("./documents/saves/saveTemplate", "utf8"));
-                newSaveFile.gameState = "0";
-                fs.writeFileSync("./documents/saves/" + saveID + ".save", JSON.stringify(newSaveFile, null, "  "));
-                activeSave = newSaveFile;
-                return;
+                console.log("No existing save");
             } else {
                 throw err;
             }
+        }
+        console.log(saveMatchingID)
+        if (saveMatchingID === null) {
+            var newSaveFile = JSON.parse(fs.readFileSync("./documents/saves/saveTemplate", "utf8"));
+            newSaveFile.gameState = "0";
+            fs.writeFileSync("./documents/saves/" + saveID + ".save", JSON.stringify(newSaveFile, null, "  "));
+            activeSave = newSaveFile;
+            return;
         }
         // console.log("here");
         activeSave = saveMatchingID;
