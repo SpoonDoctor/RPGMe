@@ -1,22 +1,14 @@
 "use strict";
+/*Setup the server and initialize the main handler for group me*/
 const express = require("express");
 const app = express();
-// const ip = require("ip");
 const bodyParser = require("body-parser");
 const groupMeHandler = require("./routes/groupMeHandler");
-
+/*Use json to parse the body*/
 app.use(bodyParser.json());
+/*Use your groupme handler for the server route*/
 app.use("/", groupMeHandler);
-// app.get("/", (req, res) =>
-// {
-//   res.send("Hello World!");
-// });
-
-// app.post("/", function(req, res)
-//     {
-//       res.status(200).send();
-//       console.log(req.body);
-// });
+/*Start listening on server*/
 app.listen(3000, "0.0.0.0", function()
 {
   console.log("Example app listening on port 3000!");
