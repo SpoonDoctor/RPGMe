@@ -4,6 +4,7 @@ class RegexCommands {
         /*Set up our regex strings*/
         this.helpCommand = /^rpgm [h|H]elp$/;
         this.beginCommand = /^rpgm [b|B]egin$/;
+        this.loadCommand = /^rpgm [l|L]oad$/;
     }
 }
 

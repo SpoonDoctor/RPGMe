@@ -21,7 +21,7 @@ class SaveHandler {
     }
 
     /*Method to load a save if one does not exist for a current ID*/
-    loadOrCreateSave(saveID) {
+    loadSave(saveID) {
         /*Using a try/catch block for code flow is awful and I'll create some alternative 
         but not right now*/
         var saveMatchingID;
@@ -34,17 +34,16 @@ class SaveHandler {
                 throw err;
             }
         }
-        console.log(saveMatchingID)
-        if (saveMatchingID === undefined) {
-            var newSaveFile = JSON.parse(fs.readFileSync("./documents/saves/saveTemplate", "utf8"));
-            newSaveFile.gameState = "0";
-            fs.writeFileSync("./documents/saves/" + saveID + ".save", JSON.stringify(newSaveFile, null, "  "));
-            activeSave = newSaveFile;
-            return;
-        }
-        // console.log("here");
         activeSave = saveMatchingID;
 
+    }
+
+    createSave(saveID) {
+        var newSaveFile = JSON.parse(fs.readFileSync("./documents/saves/saveTemplate", "utf8"));
+        newSaveFile.gameState = "0";
+        fs.writeFileSync("./documents/saves/" + saveID + ".save", JSON.stringify(newSaveFile, null, "  "));
+        activeSave = newSaveFile;
+        return;
     }
 
     /*Set the game state on the current active save*/
@@ -53,13 +52,7 @@ class SaveHandler {
     }
 
     getGameState(saveID) {
-        if (activeSave) {
-            return activeSave.gameState;
-        } else {
-            this.loadOrCreateSave(saveID);
-            // console.log("now here", activeSave.gameState);
-            return activeSave.gameState;
-        }
+        return activeSave.gameState;
     }
 
     updateSave(param, value) {

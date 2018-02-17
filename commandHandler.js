@@ -46,12 +46,15 @@ class CommandHandler {
                 "text": ""
             };
 
-            if (creatingHero) {
+            if (regexCommands.loadCommand.test(receivedCommand)) {
+                saveHandler.loadSave(request.body.user_id);
+                //saveHandler.getGameState();
+
+            } else if (creatingHero) {
                 console.log("creating hero?");
                 groupmeMessageContent.text = this.createHero(request.body.text);
                 resolve(groupmeMessageContent);
             }
-
             /*Help command*/
             else if (regexCommands.helpCommand.test(receivedCommand)) {
                 /*Read contents from help document and send them back to our main handler*/
@@ -66,6 +69,8 @@ class CommandHandler {
                 if (!saveHandler.saveIDIsSet()) {
                     saveHandler.setSaveID(request.body.sender_id);
                     console.log(request.body.sender_id);
+                    saveHandler.createSave(request.body.sender_id);
+                    activeSave = saveHandler.activeSave;
                 }
                 /*Game state isn't 0? This command is no longer useful. Let the user know*/
                 if (saveHandler.getGameState() !== gameStateList.notBegun) {
