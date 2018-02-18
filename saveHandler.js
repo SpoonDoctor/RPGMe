@@ -5,14 +5,19 @@ var activeSave = null;
 /*Class for handling saved data/saving data*/
 class SaveHandler {
     /*Returns true if saveID is set*/
+    // Clean this stuff up yo
     saveIDIsSet() {
         console.log("in saveidisset");
         console.log(activeSave);
-        if (activeSave !== null || activeSave.saveID !== "") {
-            console.log("it true yo");
-            return true;
+        if (activeSave !== null) {
+            if (activeSave.saveID !== "") {
+                console.log("it true yo");
+                return true;
+            } else {
+                console.log("yo it false");
+                return false;
+            }
         } else {
-            console.log("yo it false");
             return false;
         }
     }
