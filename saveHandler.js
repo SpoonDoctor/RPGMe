@@ -7,9 +7,12 @@ class SaveHandler {
     /*Returns true if saveID is set*/
     saveIDIsSet() {
         console.log("in saveidisset");
+        console.log(activeSave);
         if (activeSave !== null || activeSave.saveID !== "") {
+            console.log("it true yo");
             return true;
         } else {
+            console.log("yo it false");
             return false;
         }
     }
