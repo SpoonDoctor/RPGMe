@@ -35,30 +35,30 @@ class CommandHandler {
     performCommand(request) {
         let receivedCommand = request.body.text;
         return new Promise((resolve) => {
-                /*Content needed to post to a GroupMe chat. Maybe stick the id in a config instead of hard code?*/
-                var groupmeMessageContent = {
-                    "bot_id": "9c4a022eb3c5b28b6c2072ca10",
-                    "text": ""
-                };
+            /*Content needed to post to a GroupMe chat. Maybe stick the id in a config instead of hard code?*/
+            var groupmeMessageContent = {
+                "bot_id": "9c4a022eb3c5b28b6c2072ca10",
+                "text": ""
+            };
 
-                //debug commands
-                if (regexCommands.printActiveCommand.test(receivedCommand)) {
-                    console.log("saveHandler AS: ", saveHandler.getActiveSave());
-                    groupmeMessageContent.text = "Debug active saves";
+            //debug commands
+            if (regexCommands.printActiveCommand.test(receivedCommand)) {
+                console.log("saveHandler AS: ", saveHandler.getActiveSave());
+                groupmeMessageContent.text = "Debug active saves";
+                resolve(groupmeMessageContent);
+                return;
+            }
+
+
+
+            if (regexCommands.loadCommand.test(receivedCommand)) {
+                saveHandler.loadSave(request.body.user_id);
+                // activeSave = saveHandler.getActiveSave();
+                if (saveHandler.getActiveSave() === undefined) {
+                    groupmeMessageContent.text = "Failed to load file. To begin a game, use 'rpgm begin.'";
                     resolve(groupmeMessageContent);
-                    return;
-                }
-
-
-
-                if (regexCommands.loadCommand.test(receivedCommand)) {
-                    saveHandler.loadSave(request.body.user_id);
-                    // activeSave = saveHandler.getActiveSave();
-                    if (saveHandler.getActiveSave() === undefined) {
-                        groupmeMessageContent.text = "Failed to load file. To begin a game, use 'rpgm begin.'";
-                        resolve(groupmeMessageContent);
-                    } else
-                        groupmeMessageContent.text = "loaded";
+                } else {
+                    groupmeMessageContent.text = "loaded";
                     resolve(groupmeMessageContent);
                 }
 
@@ -106,7 +106,7 @@ class CommandHandler {
             }
         });
 
-}
+    }
 }
 
 module.exports = new CommandHandler();
