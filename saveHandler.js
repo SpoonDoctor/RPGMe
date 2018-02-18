@@ -43,6 +43,7 @@ class SaveHandler {
         newSaveFile.gameState = "0";
         fs.writeFileSync("./documents/saves/" + saveID + ".save", JSON.stringify(newSaveFile, null, "  "));
         activeSave = newSaveFile;
+        activeSave.saveID = saveID;
         return;
     }
 
@@ -61,7 +62,7 @@ class SaveHandler {
 
     gameSave() {
         if ((activeSave !== null) & (activeSave !== undefined)) {
-            fs.writeFileSync(JSON.stringify(activeSave));
+            fs.writeFileSync("./documents/saves/" + saveID + ".save", JSON.stringify(activeSave, null, " "));
 
         } else {
             console.log("No Active Save");
