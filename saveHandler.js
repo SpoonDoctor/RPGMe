@@ -72,7 +72,7 @@ class SaveHandler {
     gameSave() {
         if ((activeSave !== null) && (activeSave !== undefined)) {
             console.log(activeSave);
-            fs.writeFileSync("./documents/saves/" + saveID + ".save", JSON.stringify(activeSave, null, " "));
+            fs.writeFileSync("./documents/saves/" + activeSave.saveID + ".save", JSON.stringify(activeSave, null, " "));
 
         } else {
             console.log("No Active Save");
