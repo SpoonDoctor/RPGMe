@@ -1,13 +1,12 @@
 "use strict";
 const fs = require("fs");
 var activeSave = null;
-var saveID = null;
 
 /*Class for handling saved data/saving data*/
 class SaveHandler {
     /*Returns true if saveID is set*/
     saveIDIsSet() {
-        if (saveID) {
+        if (activeSave.saveID) {
             return true;
         } else {
             return false;
