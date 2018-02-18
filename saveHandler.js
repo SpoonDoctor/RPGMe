@@ -6,7 +6,7 @@ var activeSave = null;
 class SaveHandler {
     /*Returns true if saveID is set*/
     saveIDIsSet() {
-        if (activeSave.saveID) {
+        if ((activeSave.saveID !== null) && (activeSave.saveID !== undefined)) {
             return true;
         } else {
             return false;
@@ -60,7 +60,7 @@ class SaveHandler {
     }
 
     gameSave() {
-        if ((activeSave !== null) & (activeSave !== undefined)) {
+        if ((activeSave !== null) && (activeSave !== undefined)) {
             fs.writeFileSync("./documents/saves/" + saveID + ".save", JSON.stringify(activeSave, null, " "));
 
         } else {
