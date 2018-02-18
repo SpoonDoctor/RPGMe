@@ -85,19 +85,23 @@ class CommandHandler {
             }
             /*Begin command for when user has not created a character/game?*/
             else if (regexCommands.beginCommand.test(receivedCommand)) {
+                console.log("In begin command");
                 /*Check if the saveID is set on the save handler. If not, set it*/
                 if (!saveHandler.saveIDIsSet()) {
+                    console.log("In ID check");
                     saveHandler.setSaveID(request.body.sender_id);
                     console.log(request.body.sender_id);
                     saveHandler.createSave(request.body.sender_id);
                 }
                 /*Game state isn't 0? This command is no longer useful. Let the user know*/
                 if (saveHandler.getGameState() !== gameStateList.notBegun) {
+                    console.log("Game state not 0");
                     groupmeMessageContent.text = "The game can not begin as it is either already in progress or your id can not be determined.";
                     resolve(groupmeMessageContent);
                 } else
                 /*Game state is 0? Move to hero creation mode. Fix this because it'll always run if state is not 0*/
                 {
+                    console.log("Game state 0");
                     groupmeMessageContent.text = "Please enter your desired name for your hero:";
                     creatingHero = true;
                     saveHandler.setGameState("1");
