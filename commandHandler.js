@@ -93,6 +93,7 @@ class CommandHandler {
                     console.log(request.body.sender_id);
                     saveHandler.createSave(request.body.sender_id);
                 }
+                console.log("outside id check");
                 /*Game state isn't 0? This command is no longer useful. Let the user know*/
                 if (saveHandler.getGameState() !== gameStateList.notBegun) {
                     console.log("Game state not 0");

@@ -6,6 +6,7 @@ var activeSave = null;
 class SaveHandler {
     /*Returns true if saveID is set*/
     saveIDIsSet() {
+        console.log("in saveidisset");
         if ((activeSave.saveID !== null) && (activeSave.saveID !== undefined)) {
             return true;
         } else {
