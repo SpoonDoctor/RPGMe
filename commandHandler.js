@@ -89,7 +89,7 @@ class CommandHandler {
                 /*Check if the saveID is set on the save handler. If not, set it*/
                 if (!saveHandler.saveIDIsSet()) {
                     console.log("In ID check");
-                    saveHandler.setSaveID(request.body.sender_id);
+                    //saveHandler.setSaveID(request.body.sender_id);
                     console.log(request.body.sender_id);
                     saveHandler.createSave(request.body.sender_id);
                 }

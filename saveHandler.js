@@ -23,10 +23,9 @@ class SaveHandler {
     }
 
     /*Sets the saveID to the one controlling the game. Better way to deal with this?*/
-    setSaveID(saverID) {
-        console.log("SaverID", saverID);
-        saveID = saverID;
-    }
+    // setSaveID(saverID) {
+        //     console.log("SaverID", saverID);
+        //     activeSave.saveID = saverID;        // }
 
     /*Method to load a save if one does not exist for a current ID*/
     loadSave(saveID) {
