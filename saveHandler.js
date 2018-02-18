@@ -24,8 +24,8 @@ class SaveHandler {
 
     /*Sets the saveID to the one controlling the game. Better way to deal with this?*/
     // setSaveID(saverID) {
-        //     console.log("SaverID", saverID);
-        //     activeSave.saveID = saverID;        // }
+    //     console.log("SaverID", saverID);
+    //     activeSave.saveID = saverID;        // }
 
     /*Method to load a save if one does not exist for a current ID*/
     loadSave(saveID) {
@@ -71,6 +71,7 @@ class SaveHandler {
 
     gameSave() {
         if ((activeSave !== null) && (activeSave !== undefined)) {
+            console.log(activeSave);
             fs.writeFileSync("./documents/saves/" + saveID + ".save", JSON.stringify(activeSave, null, " "));
 
         } else {
