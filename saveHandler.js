@@ -49,10 +49,10 @@ class SaveHandler {
     createSave(saveID) {
         var newSaveFile = JSON.parse(fs.readFileSync("./documents/saves/saveTemplate", "utf8"));
         newSaveFile.gameState = "0";
+        console.log("Set game state on new save");
         fs.writeFileSync("./documents/saves/" + saveID + ".save", JSON.stringify(newSaveFile, null, "  "));
         activeSave = newSaveFile;
         activeSave.saveID = saveID;
-        return;
     }
 
     /*Set the game state on the current active save*/
